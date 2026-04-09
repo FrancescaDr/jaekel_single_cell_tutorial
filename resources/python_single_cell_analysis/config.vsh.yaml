@@ -1,0 +1,41 @@
+name: base_single_cell_analysis
+description: A Python 3.12 image with anndata preinstalled.
+test_resources:
+  - type: python_script
+    path: test_anndata.py 
+engines:
+  - type: docker
+    image: python:3.12
+    setup:
+      - type: apt
+        packages:
+          - procps
+          - git
+          - r-base
+          - r-base-dev
+      - type: python
+        packages:
+          - anndata
+          - scanpy
+          - pyyaml
+          - ipykernel
+          - annoy
+          - scikit-misc
+          - PhenoGraph
+          - celltypist
+          - palantir
+          - scrublet
+          - cellrank
+          - pydeseq2
+          - liana
+          - gseapy
+          - rpy2
+          - anndata2ri
+          - python-igraph
+          - pyscipopt
+          - decoupler
+          - pybiomart
+          - adjustText
+          - cellcharter
+runners:
+  - type: executable

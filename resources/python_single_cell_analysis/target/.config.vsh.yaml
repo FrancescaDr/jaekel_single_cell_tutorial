@@ -1,0 +1,69 @@
+name: "base_single_cell_analysis"
+description: "A Python 3.12 image with anndata preinstalled."
+test_resources:
+- type: "python_script"
+  path: "test_anndata.py"
+  is_executable: true
+info: null
+status: "enabled"
+scope:
+  image: "public"
+  target: "public"
+runners:
+- type: "executable"
+  id: "executable"
+  docker_setup_strategy: "ifneedbepullelsecachedbuild"
+engines:
+- type: "docker"
+  id: "docker"
+  image: "python:3.12"
+  namespace_separator: "/"
+  setup:
+  - type: "apt"
+    packages:
+    - "procps"
+    - "git"
+    - "r-base"
+    - "r-base-dev"
+    interactive: false
+  - type: "python"
+    user: false
+    packages:
+    - "anndata"
+    - "scanpy"
+    - "pyyaml"
+    - "ipykernel"
+    - "annoy"
+    - "scikit-misc"
+    - "PhenoGraph"
+    - "celltypist"
+    - "palantir"
+    - "scrublet"
+    - "cellrank"
+    - "pydeseq2"
+    - "liana"
+    - "gseapy"
+    - "rpy2"
+    - "anndata2ri"
+    - "python-igraph"
+    - "pyscipopt"
+    - "decoupler"
+    - "pybiomart"
+    - "adjustText"
+    - "cellcharter"
+    upgrade: true
+  entrypoint: []
+  cmd: null
+build_info:
+  config: "[anonymized]/config.vsh.yaml"
+  runner: "executable"
+  engine: "docker"
+  output: "target"
+  executable: "target/base_single_cell_analysis"
+  viash_version: "0.9.6"
+  git_commit: "09185c6d9de4865300787272098b4733a3a5470c"
+  git_remote: "https://github.com/FrancescaDr/jaekel_single_cell_tutorial.git"
+package_config:
+  info: null
+  source: "src"
+  target: "target"
